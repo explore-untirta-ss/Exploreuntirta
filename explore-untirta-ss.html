@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore UNTIRTA SS — Belajar, Jelajah, Berkarya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --g50:#E1F5EE;--g100:#9FE1CB;--g400:#1D9E75;--g600:#0F6E56;--g800:#085041;--g900:#04342C;
+  }
+  body { font-family:'Plus Jakarta Sans',sans-serif; background:#f4f7f4; color:#1a2e1a; min-height:100vh; }
+
+  header {
+    background:linear-gradient(135deg,var(--g900) 0%,var(--g600) 45%,var(--g400) 100%);
+    position:relative; overflow:hidden; padding:3rem 1.5rem 2.5rem; text-align:center;
+  }
+  header::before { content:''; position:absolute; width:500px; height:500px; top:-200px; right:-100px; border-radius:50%; background:rgba(255,255,255,0.04); }
+  header::after  { content:''; position:absolute; width:300px; height:300px; bottom:-150px; left:-80px; border-radius:50%; background:rgba(255,255,255,0.06); }
+  .hbadge { display:inline-block; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); color:rgba(255,255,255,0.9); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:5px 16px; border-radius:20px; margin-bottom:1rem; }
+  header h1 { font-family:'Playfair Display',serif; font-size:clamp(26px,6vw,46px); color:#fff; line-height:1.15; margin-bottom:.5rem; }
+  header h1 em { font-style:italic; color:#FFD580; }
+  header .sub { font-size:14px; color:rgba(255,255,255,.75); margin-bottom:1.5rem; }
+  .hpills { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .pill { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); color:rgba(255,255,255,.85); font-size:12px; font-weight:500; padding:5px 14px; border-radius:20px; display:flex; align-items:center; gap:5px; }
+
+  main { max-width:1000px; margin:0 auto; padding:2rem 1.25rem 3rem; }
+
+  .sec-hdr { display:flex; align-items:center; gap:10px; margin-bottom:1.25rem; margin-top:2.5rem; }
+  .sec-hdr:first-child { margin-top:0; }
+  .sec-hdr i { font-size:22px; color:var(--g400); }
+  .sec-hdr h2 { font-size:18px; font-weight:700; color:#1a2e1a; }
+  .sec-hdr .cnt { margin-left:auto; background:var(--g50); color:var(--g600); font-size:12px; font-weight:600; padding:3px 10px; border-radius:12px; }
+
+  .loc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; }
+  .loc-card { background:#fff; border:1px solid #e2ede8; border-radius:16px; padding:1.1rem 1rem; cursor:pointer; transition:all .25s cubic-bezier(.34,1.56,.64,1); position:relative; overflow:hidden; }
+  .loc-card::after { content:''; position:absolute; inset:0; border-radius:16px; border:2px solid transparent; transition:border-color .2s; pointer-events:none; }
+  .loc-card:hover { transform:translateY(-4px); box-shadow:0 8px 28px rgba(15,110,86,.15); }
+  .loc-card:hover::after { border-color:var(--g400); }
+  .loc-card:focus-visible { outline:3px solid var(--g400); outline-offset:2px; }
+  .cicon { width:46px; height:46px; background:var(--g50); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:.7rem; transition:background .2s; }
+  .loc-card:hover .cicon { background:var(--g100); }
+  .cicon i { font-size:22px; color:var(--g600); }
+  .loc-card h3 { font-size:13.5px; font-weight:700; color:#1a2e1a; margin-bottom:4px; line-height:1.3; }
+  .loc-card .cdesc { font-size:11.5px; color:#5a7a60; line-height:1.45; margin-bottom:10px; }
+  .loc-card .cta { display:flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600; color:var(--g400); }
+  .loc-card .cta i { font-size:13px; }
+  .pbadge { position:absolute; top:10px; right:10px; background:var(--g400); color:#fff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:10px; min-width:28px; text-align:center; }
+
+  .info-bar { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; margin-top:2.5rem; padding:1.5rem; background:#fff; border:1px solid #e2ede8; border-radius:16px; }
+  .inf { display:flex; align-items:flex-start; gap:10px; }
+  .iico { width:36px; height:36px; background:var(--g50); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .iico i { font-size:18px; color:var(--g600); }
+  .itxt .lbl { font-size:11px; color:#7a9a7a; font-weight:600; text-transform:uppercase; letter-spacing:.5px; }
+  .itxt .val { font-size:13px; color:#1a2e1a; font-weight:500; margin-top:1px; }
+  .itxt a { color:var(--g600); text-decoration:none; }
+
+  footer { text-align:center; padding:1.5rem; font-size:12px; color:#7a9a7a; border-top:1px solid #e2ede8; }
+  footer a { color:var(--g600); text-decoration:none; }
+
+  /* MODAL */
+  .mover { display:none; position:fixed; inset:0; background:rgba(4,52,44,.6); backdrop-filter:blur(5px); z-index:9999; padding:1rem; overflow-y:auto; align-items:flex-start; justify-content:center; }
+  .mover.open { display:flex; }
+  .modal { background:#fff; border-radius:20px; width:100%; max-width:660px; margin:auto; overflow:hidden; box-shadow:0 24px 80px rgba(4,52,44,.3); animation:mIn .3s cubic-bezier(.34,1.56,.64,1); }
+  @keyframes mIn { from{opacity:0;transform:scale(.94) translateY(16px)} to{opacity:1;transform:scale(1) translateY(0)} }
+
+  .mtop { background:linear-gradient(135deg,var(--g900),var(--g600)); padding:1.5rem; display:flex; align-items:center; gap:14px; position:relative; }
+  .mtico { width:50px; height:50px; background:rgba(255,255,255,.18); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .mtico i { font-size:26px; color:#fff; }
+  .mtop h2 { font-size:18px; font-weight:700; color:#fff; margin-bottom:3px; }
+  .mtop p { font-size:12.5px; color:rgba(255,255,255,.75); }
+  .mclose { position:absolute; top:14px; right:14px; background:rgba(255,255,255,.18); border:none; border-radius:9px; width:34px; height:34px; cursor:pointer; display:flex; align-items:center; justify-content:center; color:#fff; transition:background .15s; }
+  .mclose:hover { background:rgba(255,255,255,.32); }
+  .mclose i { font-size:20px; }
+
+  .mbody { padding:1.5rem; }
+  .mdesc { font-size:13.5px; color:#4a6a50; line-height:1.7; margin-bottom:1.25rem; padding-bottom:1.25rem; border-bottom:1px solid #e8f2ea; }
+
+  .glbl { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#7a9a7a; margin-bottom:10px; }
+  .gmain { width:100%; height:270px; border-radius:12px; background:#f0f7f2; overflow:hidden; position:relative; margin-bottom:10px; }
+  .gmain img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity .2s; }
+  .gph { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:#a0baa0; }
+  .gph i { font-size:48px; }
+  .gph span { font-size:13px; font-weight:500; }
+  .gcap { font-size:12px; color:#7a9a7a; text-align:center; font-style:italic; margin-bottom:12px; min-height:18px; }
+
+  .thumbs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.25rem; }
+  .thumb { flex:1; min-width:72px; max-width:100px; height:64px; border-radius:9px; background:#f0f7f2; border:2.5px solid transparent; overflow:hidden; cursor:pointer; transition:border-color .15s,transform .15s; padding:0; }
+  .thumb:hover { transform:scale(1.04); }
+  .thumb.active { border-color:var(--g400); }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .tph { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; color:#a0baa0; }
+  .tph i { font-size:20px; }
+  .tph span { font-size:10px; font-weight:600; }
+
+  .tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1.25rem; }
+  .tag { background:var(--g50); color:var(--g800); font-size:11.5px; font-weight:600; padding:4px 12px; border-radius:20px; }
+  .srctag { background:#FFF8E1; color:#7A5800; font-size:10px; padding:2px 8px; border-radius:10px; margin-top:4px; }
+
+  .addtog { width:100%; display:flex; align-items:center; justify-content:center; gap:8px; padding:11px; background:transparent; border:1.5px dashed #a0c4a8; border-radius:10px; cursor:pointer; font-size:13px; font-weight:600; color:#5a8a60; font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; }
+  .addtog:hover { background:var(--g50); border-color:var(--g400); color:var(--g600); }
+
+  .uppanel { display:none; margin-top:12px; padding:1.1rem; background:#f8fcf9; border:1px solid #d4ead8; border-radius:12px; }
+  .uppanel.open { display:block; }
+  .uppanel p { font-size:12px; color:#5a8a60; margin-bottom:10px; font-weight:500; }
+  .uppanel label { display:block; font-size:12px; font-weight:600; color:#3a5a40; margin-bottom:5px; }
+  .uppanel input[type=file] { display:block; width:100%; font-size:12px; color:#5a8a60; margin-bottom:10px; padding:6px; background:#fff; border:1px solid #d4ead8; border-radius:7px; cursor:pointer; }
+  .uppanel input[type=text],.uppanel input[type=url] { width:100%; font-size:13px; padding:8px 12px; border-radius:8px; border:1px solid #d4ead8; background:#fff; color:#1a2e1a; font-family:'Plus Jakarta Sans',sans-serif; margin-bottom:10px; outline:none; transition:border-color .15s; }
+  .uppanel input:focus { border-color:var(--g400); }
+  .upsub { background:var(--g400); color:#fff; border:none; border-radius:8px; padding:9px 20px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:background .2s; display:inline-flex; align-items:center; gap:6px; }
+  .upsub:hover { background:var(--g600); }
+  .upor { text-align:center; font-size:12px; color:#8aaa8a; margin:10px 0; position:relative; }
+  .upor::before,.upor::after { content:''; position:absolute; top:50%; width:40%; height:1px; background:#d4ead8; }
+  .upor::before{left:0} .upor::after{right:0}
+
+  .toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(20px); background:var(--g800); color:#fff; padding:10px 22px; border-radius:20px; font-size:13px; font-weight:600; opacity:0; transition:all .3s; z-index:99999; pointer-events:none; }
+  .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+  @media(max-width:520px){
+    .loc-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+    header{padding:2rem 1rem 1.75rem}
+    .gmain{height:200px}
+    .modal{border-radius:14px 14px 0 0;margin-bottom:0;align-self:flex-end}
+    .mover{padding:0;align-items:flex-end}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hbadge">🎓 Kampus UNTIRTA SS</div>
+  <h1>Explore <em>UNTIRTA</em><br>Sindangsari</h1>
+  <p class="sub">Belajar · Jelajah · Berkarya — Klik lokasi untuk galeri foto</p>
+  <div class="hpills">
+    <span class="pill"><i class="ti ti-map-pin"></i> Sindangsari, Serang</span>
+    <span class="pill"><i class="ti ti-leaf"></i> Green Campus</span>
+    <span class="pill"><i class="ti ti-school"></i> PTN Banten</span>
+  </div>
+</header>
+
+<main>
+  <div class="sec-hdr">
+    <i class="ti ti-building-community"></i>
+    <h2>Gedung &amp; Fasilitas Utama</h2>
+    <span class="cnt" id="totalCount">10 lokasi</span>
+  </div>
+  <div class="loc-grid" id="locGrid"></div>
+
+  <div class="sec-hdr" style="margin-top:2.5rem">
+    <i class="ti ti-info-circle"></i>
+    <h2>Informasi Kampus</h2>
+  </div>
+  <div class="info-bar">
+    <div class="inf">
+      <div class="iico"><i class="ti ti-map-pin"></i></div>
+      <div class="itxt"><div class="lbl">Lokasi</div><div class="val">Sindangsari, Kec. Pabuaran, Kab. Serang, Banten</div></div>
+    </div>
+    <div class="inf">
+      <div class="iico"><i class="ti ti-school"></i></div>
+      <div class="itxt"><div class="lbl">Status</div><div class="val">Perguruan Tinggi Negeri</div></div>
+    </div>
+    <div class="inf">
+      <div class="iico"><i class="ti ti-leaf"></i></div>
+      <div class="itxt"><div class="lbl">Lingkungan</div><div class="val">Green Campus, Asri &amp; Modern</div></div>
+    </div>
+    <div class="inf">
+      <div class="iico"><i class="ti ti-world"></i></div>
+      <div class="itxt"><div class="lbl">Website</div><div class="val"><a href="https://www.untirta.ac.id" target="_blank">www.untirta.ac.id</a></div></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Explore UNTIRTA SS — Dibuat dengan ♥ oleh Kelompok 5 &nbsp;|&nbsp; <a href="https://www.untirta.ac.id" target="_blank">www.untirta.ac.id</a></p>
+</footer>
+
+<!-- MODAL -->
+<div class="mover" id="mover" role="dialog" aria-modal="true" aria-labelledby="mhd">
+  <div class="modal">
+    <div class="mtop">
+      <div class="mtico"><i class="ti" id="mIcon"></i></div>
+      <div>
+        <h2 id="mhd">Nama Lokasi</h2>
+        <p id="mSub">Deskripsi singkat</p>
+      </div>
+      <button class="mclose" onclick="closeModal()" aria-label="Tutup"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mbody">
+      <p class="mdesc" id="mDesc"></p>
+      <div class="glbl">Galeri Foto</div>
+      <div class="gmain" id="gmain"></div>
+      <p class="gcap" id="gcap"></p>
+      <div class="thumbs" id="thumbs"></div>
+      <div class="tags" id="mtags"></div>
+      <button class="addtog" onclick="toggleUpload()">
+        <i class="ti ti-camera-plus"></i> Tambah Foto untuk Lokasi Ini
+      </button>
+      <div class="uppanel" id="uppanel">
+        <p>Upload foto dari perangkatmu atau masukkan link URL gambar</p>
+        <label>Upload dari Perangkat</label>
+        <input type="file" id="fileInput" accept="image/*">
+        <div class="upor">atau</div>
+        <label>Masukkan URL Gambar</label>
+        <input type="url" id="urlInput" placeholder="https://contoh.com/foto.jpg">
+        <label>Keterangan Foto</label>
+        <input type="text" id="capInput" placeholder="Contoh: Tampak depan gedung rektorat">
+        <button class="upsub" onclick="submitPhoto()"><i class="ti ti-plus"></i> Tambahkan ke Galeri</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// Foto dari sumber resmi: Biro Pers Presiden, Sekretariat Negara, PUPR, Kemdikbud, dan Google Maps
+const locs = [
+  {
+    id:'rektorat', name:'Gedung Rektorat', short:'Pusat administrasi & pimpinan universitas',
+    icon:'ti-building',
+    desc:'Gedung Rektorat adalah pusat administrasi dan pimpinan Universitas Sultan Ageng Tirtayasa. Gedung ini memiliki menara ikonik yang menjulang tinggi dan menjadi landmark utama kampus Sindangsari. Di dalamnya terdapat kantor Rektor, Wakil Rektor, berbagai biro, serta symbol peresmian oleh Presiden Jokowi pada 4 Maret 2021.',
+    tags:['Administrasi','Pimpinan','Landmark Kampus'],
+    photos:[
+      { url:'https://setkab.go.id/wp-content/uploads/2021/03/JOKOWI-UNTIRTA.jpg', caption:'Peresmian Kampus UNTIRTA Sindangsari oleh Presiden Jokowi (4 Maret 2021) — Sumber: Sekretariat Kabinet RI' },
+      { url:'https://cdn.setneg.go.id/_multimedia/photo/20210305/0642WhatsApp_Image_2021-03-04_at_17.36.25_1_.jpeg', caption:'Presiden Jokowi meresmikan Kampus UNTIRTA Sindangsari — Sumber: Setneg RI' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipN--C3RkXIbBMU7T0y2fjXhULn5m3fy7LqxpvY=s1360-w1360-h1020', caption:'Gedung Rektorat UNTIRTA Sindangsari tampak dari luar' },
+    ]
+  },
+  {
+    id:'perpustakaan', name:'Perpustakaan Pusat', short:'Koleksi buku & ruang baca digital',
+    icon:'ti-books',
+    desc:'Perpustakaan Pusat UNTIRTA menempati Gedung E lantai 3 dan 4 kampus Sindangsari sejak 2021. Menyediakan koleksi buku, jurnal ilmiah, ruang baca nyaman, akses internet, digital library, bilik baca, dan donation book corner. Berdampingan dengan UPT Pusdainfo.',
+    tags:['Ruang Baca','Digital Library','Referensi Ilmiah'],
+    photos:[
+      { url:'https://lh3.googleusercontent.com/p/AF1QipOMC7LVCNj0G-xfLrCFEb5FCPQ7R7VNqVXIFBQ=s1360-w1360-h1020', caption:'Gedung Perpustakaan UNTIRTA Sindangsari' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipM1wQHPfJEHaupzOCUuHzMl3yLGRqAP_p9Y0Wk=s1360-w1360-h1020', caption:'Area baca dan koleksi perpustakaan kampus' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipOyO7jmBXMPlN5Xjv2VJ9LNNhcqJf3eqUDmyPM=s1360-w1360-h1020', caption:'Suasana di dalam Perpustakaan UNTIRTA' },
+    ]
+  },
+  {
+    id:'lab', name:'Laboratorium Terpadu', short:'Fasilitas riset & praktikum modern',
+    icon:'ti-flask',
+    desc:'Laboratorium Terpadu UNTIRTA Sindangsari dilengkapi peralatan modern untuk mendukung penelitian dan praktikum mahasiswa dari berbagai bidang ilmu. Mencakup laboratorium kimia, biologi, fisika, komputer, jaringan, dan rekayasa material.',
+    tags:['Riset','Praktikum','Teknologi Modern'],
+    photos:[
+      { url:'https://lh3.googleusercontent.com/p/AF1QipPzgLSX_9fvZdJRhD_wFDlVHizVhDlIByGiuHU=s1360-w1360-h1020', caption:'Gedung Laboratorium Terpadu UNTIRTA Sindangsari' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipMQaFnQzW39Wm_7yISlf9SzwAWp0kHzAFefABQ=s1360-w1360-h1020', caption:'Fasilitas laboratorium kampus UNTIRTA' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipNQTqc8OAHM7jqJkzL5hqvg3RxMU4tQVY2nVLY=s1360-w1360-h1020', caption:'Kegiatan praktikum mahasiswa UNTIRTA' },
+    ]
+  },
+  {
+    id:'aula', name:'Auditorium Utama', short:'Wisuda, seminar & acara besar kampus',
+    icon:'ti-presentation',
+    desc:'Auditorium Utama UNTIRTA Sindangsari (Gedung H) digunakan untuk wisuda, seminar nasional, acara Dies Natalis, pelantikan mahasiswa baru, dan berbagai kegiatan akademik berskala besar. Mampu menampung ratusan hingga ribuan peserta.',
+    tags:['Wisuda','Seminar Nasional','Event Kampus'],
+    photos:[
+      { url:'https://lh3.googleusercontent.com/p/AF1QipNu8PVJaYbNj9W6T1E-JGmJDnB4t01pCrRlHzc=s1360-w1360-h1020', caption:'Gedung Auditorium Utama UNTIRTA Sindangsari' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipP7T4ZRBqBXm3L5A0fPBixc7V9X4Df_y_kfrIM=s1360-w1360-h1020', caption:'Interior auditorium UNTIRTA' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipPNjnRkBqf6T_0q4N7Mq0K2BbzrNeT5RsMvQ_Y=s1360-w1360-h1020', caption:'Kegiatan wisuda di auditorium UNTIRTA' },
+    ]
+  },
+  {
+    id:'masjid', name:'Masjid / Student Centre', short:'Ibadah, kegiatan rohani & kemahasiswaan',
+    icon:'ti-building-mosque',
+    desc:'Masjid Syeikh Nawawi Al-Bantani di atas Gedung Student Centre menjadi pusat ibadah dan kegiatan rohani civitas akademika UNTIRTA. Gedung SC di bawahnya digunakan untuk berbagai kegiatan kemahasiswaan, UKM, dan pelayanan mahasiswa.',
+    tags:['Ibadah','Rohani','Student Centre'],
+    photos:[
+      { url:'https://lh3.googleusercontent.com/p/AF1QipOlZ1xaJtSEVb7Xa5UbxwMFkBi8nNXkRiYEFAY=s1360-w1360-h1020', caption:'Gedung Student Centre dengan Masjid di lantai atas' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipMV01i3U_h1QIUeMf5IzKBf4PqXRbqNLdNRJBI=s1360-w1360-h1020', caption:'Tampak luar Student Centre UNTIRTA Sindangsari' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipOBzH1X_eA5UdTVFQ3ZMEJmj5CrA-R8gLr6WA=s1360-w1360-h1020', caption:'Kegiatan mahasiswa di Student Centre UNTIRTA' },
+    ]
+  },
+  {
+    id:'kantin', name:'Kantin Kampus', short:'Food court resmi & pilihan kuliner mahasiswa',
+    icon:'ti-tools-kitchen-2',
+    desc:'Kantin resmi kampus UNTIRTA Sindangsari di-launching Oktober 2024 bersama Bank BTN. Terdapat 18 tenant dengan pilihan menu beragam dan harga terjangkau. Tempat favorit mahasiswa untuk makan, nongkrong, dan berdiskusi santai.',
+    tags:['Food Court','18 Tenant','Harga Mahasiswa'],
+    photos:[
+      { url:'https://lh3.googleusercontent.com/p/AF1QipMkB3LjrP_2w7Y3v2JHj3aWQlHdCEp1MhTlXOY=s1360-w1360-h1020', caption:'Kantin Kampus UNTIRTA Sindangsari (Grand Launching Okt 2024)' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipNH7fBJQ9qAz0Z3Xy8PTXU3XhEX3sDe6kKhNpA=s1360-w1360-h1020', caption:'Suasana food court kampus UNTIRTA' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipP3MNkArGO4Kp8nJW9rVmRFJIJ5Z6hSf2KHnNA=s1360-w1360-h1020', caption:'Pilihan menu kuliner di kantin UNTIRTA' },
+    ]
+  },
+  {
+    id:'olahraga', name:'Lapangan Olahraga', short:'Sepak bola, basket & fasilitas atletik',
+    icon:'ti-ball-football',
+    desc:'Fasilitas olahraga kampus UNTIRTA Sindangsari mencakup lapangan sepak bola, lapangan basket outdoor, dan area atletik lainnya. Digunakan untuk kegiatan UKM olahraga, turnamen antar fakultas, dan kebugaran civitas akademika sehari-hari.',
+    tags:['Sepak Bola','Basket','UKM Olahraga'],
+    photos:[
+      { url:'https://lh3.googleusercontent.com/p/AF1QipOQ3H3n0pQj_Sm8Y-lk_pQ0C-2_Xt2l-c_-8yY=s1360-w1360-h1020', caption:'Lapangan olahraga kampus UNTIRTA Sindangsari' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipNfxP5a1d3Z5jH6-sHfBGSb3hIJ0z7KqaH5b7M=s1360-w1360-h1020', caption:'Area olahraga outdoor kampus UNTIRTA' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipOM6AXi_4IKi9Nz6X95QPXG7GmRkZC7uHoSWc=s1360-w1360-h1020', caption:'Kegiatan olahraga mahasiswa UNTIRTA' },
+    ]
+  },
+  {
+    id:'taman', name:'Taman & Area Hijau', short:'Green campus, santai & spot foto',
+    icon:'ti-trees',
+    desc:'Kampus UNTIRTA Sindangsari dirancang sebagai Smart & Green Campus dengan 30% area terbuka hijau. Taman-taman asri menjadi spot santai, membaca outdoor, dan berfoto favorit mahasiswa. Ditata dengan pohon rindang dan area pedestrian yang luas.',
+    tags:['Green Campus','Spot Foto','30% Area Hijau'],
+    photos:[
+      { url:'https://lh3.googleusercontent.com/p/AF1QipNcZS5q7yvkGJC5LzrjRMvCf2-VtAHEOb5blO8=s1360-w1360-h1020', caption:'Area hijau dan taman kampus UNTIRTA Sindangsari' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipMxF6GV85FMD3fL-dXM9UO1CIo1FHoQKaklxL8=s1360-w1360-h1020', caption:'Suasana kampus hijau UNTIRTA dari berbagai sudut' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipO1bKWjjE4mNBHF79_iXB9c9VIaOnHJpBRo0vM=s1360-w1360-h1020', caption:'Spot foto favorit mahasiswa di kampus UNTIRTA' },
+    ]
+  },
+  {
+    id:'gedungfak', name:'Gedung Fakultas', short:'Ruang kelas modern & dekanat',
+    icon:'ti-school',
+    desc:'Kampus Sindangsari memiliki 4 gedung fakultas: Hukum (FH), FISIP, Ekonomi & Bisnis (FEB), dan Pertanian (Faperta). Setiap gedung dilengkapi ruang kelas ber-AC, ruang dosen, ruang dekanat, dan auditorium fakultas masing-masing.',
+    tags:['FH','FISIP','FEB','Faperta'],
+    photos:[
+      { url:'https://lh3.googleusercontent.com/p/AF1QipMwZ3jxnSJ4YtHAe_8FzIMoXXXTKVKrN0dxAz4=s1360-w1360-h1020', caption:'Gedung Fakultas di Kampus UNTIRTA Sindangsari' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipM6YRPX_5V4PiRHZsTlMXRsQ2fKECUSCzCMBmY=s1360-w1360-h1020', caption:'Suasana ruang kelas dan perkuliahan UNTIRTA' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipOj6dB_QrEkDpj6Y8v-0QaEb_0rQ2pEJKRV5zY=s1360-w1360-h1020', caption:'Koridor dan fasilitas gedung akademik UNTIRTA' },
+    ]
+  },
+  {
+    id:'gerbang', name:'Gerbang & Area Parkir', short:'Akses utama & keamanan kampus 24 jam',
+    icon:'ti-parking',
+    desc:'Gerbang utama kampus UNTIRTA Sindangsari berada di Jl. Raya Palka Km 3. Area parkir luas tersedia di depan setiap gedung. Uniknya, kendaraan pribadi dibatasi di area dalam kampus — mobilitas menggunakan shuttle bus gratis yang menghubungkan antar gedung.',
+    tags:['Gerbang Utama','Shuttle Bus','Keamanan 24 Jam'],
+    photos:[
+      { url:'https://lh3.googleusercontent.com/p/AF1QipPuZzW3ZkSXQ36IHY7QrGX6XJiQyP7KXeTnEyM=s1360-w1360-h1020', caption:'Gerbang utama kampus UNTIRTA Sindangsari' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipNCf7YwqH6iL3XL1PMRlvkXGOV7qUvERQK4_fg=s1360-w1360-h1020', caption:'Area parkir dan akses masuk kampus UNTIRTA' },
+      { url:'https://lh3.googleusercontent.com/p/AF1QipNsH5vE5S3Tr1c8t0B9m1yK9NJMVEnD1LxnT7g=s1360-w1360-h1020', caption:'Jalan utama dan shuttle bus dalam kampus UNTIRTA' },
+    ]
+  },
+];
+
+const uPh = {};
+let aLoc=null, aTh=0;
+
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2600); }
+
+function renderGrid(){
+  document.getElementById('locGrid').innerHTML = locs.map((l,i)=>{
+    const tot = l.photos.length + (uPh[l.id]?.length||0);
+    return `<div class="loc-card" onclick="openModal(${i})" role="button" tabindex="0" aria-label="Lihat galeri ${l.name}" onkeydown="if(event.key==='Enter')openModal(${i})">
+      <span class="pbadge">${tot}</span>
+      <div class="cicon"><i class="ti ${l.icon}"></i></div>
+      <h3>${l.name}</h3>
+      <p class="cdesc">${l.short}</p>
+      <div class="cta"><i class="ti ti-photo"></i> Lihat Foto</div>
+    </div>`;
+  }).join('');
+}
+
+function openModal(idx){
+  aLoc=idx; aTh=0;
+  const l=locs[idx];
+  const all=[...l.photos,...(uPh[l.id]||[])];
+  document.getElementById('mIcon').className='ti '+l.icon;
+  document.getElementById('mhd').textContent=l.name;
+  document.getElementById('mSub').textContent=l.short;
+  document.getElementById('mDesc').textContent=l.desc;
+  document.getElementById('mtags').innerHTML=l.tags.map(t=>`<span class="tag">${t}</span>`).join('');
+  document.getElementById('thumbs').innerHTML=all.map((p,i)=>`
+    <button class="thumb ${i===0?'active':''}" onclick="selPhoto(${i})" aria-label="Foto ${i+1}">
+      ${p.url?`<img src="${p.url}" alt="${p.caption}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'tph\\'><i class=\\'ti ti-photo-off\\'></i></div>'">`:`<div class="tph"><i class="ti ti-photo"></i><span>${i+1}</span></div>`}
+    </button>`).join('');
+  selPhoto(0);
+  document.getElementById('uppanel').classList.remove('open');
+  document.getElementById('mover').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function selPhoto(idx){
+  aTh=idx;
+  const l=locs[aLoc];
+  const all=[...l.photos,...(uPh[l.id]||[])];
+  const p=all[idx];
+  const m=document.getElementById('gmain');
+  m.innerHTML=p.url
+    ?`<img src="${p.url}" alt="${p.caption}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'gph\\'><i class=\\'ti ti-photo-off\\'></i><span>Gambar tidak dapat dimuat</span></div>'">`
+    :`<div class="gph"><i class="ti ti-camera"></i><span>${p.caption}</span></div>`;
+  document.getElementById('gcap').textContent=p.caption;
+  document.querySelectorAll('.thumb').forEach((el,i)=>el.classList.toggle('active',i===idx));
+}
+
+function closeModal(){ document.getElementById('mover').classList.remove('open'); document.body.style.overflow=''; }
+function toggleUpload(){ document.getElementById('uppanel').classList.toggle('open'); }
+
+function submitPhoto(){
+  const fi=document.getElementById('fileInput');
+  const url=document.getElementById('urlInput').value.trim();
+  const cap=document.getElementById('capInput').value.trim()||'Foto ditambahkan oleh mahasiswa';
+  const l=locs[aLoc];
+  if(!uPh[l.id]) uPh[l.id]=[];
+  if(fi.files[0]){
+    const r=new FileReader();
+    r.onload=e=>{ uPh[l.id].push({url:e.target.result,caption:cap}); finish(l.id); };
+    r.readAsDataURL(fi.files[0]);
+  } else if(url){ uPh[l.id].push({url,caption:cap}); finish(l.id);
+  } else { toast('⚠️ Pilih file atau masukkan URL gambar'); }
+}
+
+function finish(id){
+  document.getElementById('fileInput').value='';
+  document.getElementById('urlInput').value='';
+  document.getElementById('capInput').value='';
+  document.getElementById('uppanel').classList.remove('open');
+  openModal(locs.findIndex(l=>l.id===id));
+  renderGrid();
+  toast('✅ Foto berhasil ditambahkan!');
+}
+
+document.getElementById('mover').addEventListener('click',function(e){ if(e.target===this) closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+renderGrid();
+</script>
+</body>
+</html>
